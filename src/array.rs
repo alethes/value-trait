@@ -30,7 +30,7 @@ pub trait Array: Index<usize> + Sync + Send + Clone {
 
     /// Iterates over the values paris
     #[must_use]
-    fn iter<'i>(&'i self) -> Box<dyn Iterator<Item = &Self::Element> + 'i>;
+    fn iter<'i>(&'i self) -> impl Iterator<Item = &Self::Element> + 'i;
 
     /// Number of key/value pairs
     #[must_use]
@@ -70,8 +70,8 @@ where
         Vec::push(self, e);
     }
 
-    fn iter<'i>(&'i self) -> Box<dyn Iterator<Item = &T> + 'i> {
-        Box::new(<[T]>::iter(self))
+    fn iter<'i>(&'i self) -> impl Iterator<Item = &T> + 'i {
+        <[T]>::iter(self)
     }
 
     #[inline]
@@ -110,8 +110,8 @@ where
         abi_stable::std_types::RVec::push(self, e);
     }
 
-    fn iter<'i>(&'i self) -> Box<dyn Iterator<Item = &T> + 'i> {
-        Box::new(<[T]>::iter(self))
+    fn iter<'i>(&'i self) -> impl Iterator<Item = &T> + 'i {
+        <[T]>::iter(self)
     }
 
     #[inline]

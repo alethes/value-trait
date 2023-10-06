@@ -11,6 +11,7 @@
 #![allow(clippy::module_name_repetitions, clippy::inline_always)]
 #![allow(clippy::type_repetition_in_bounds)]
 #![deny(missing_docs)]
+#![feature(return_position_impl_trait_in_trait)]
 
 #[cfg(all(feature = "128bit", feature = "c-abi"))]
 compile_error!(
